@@ -87,25 +87,41 @@ public class Solution {
     }
 
     int partTwoLineDecoder(String line) {
-        return -1;
+
+        String finalLine = line;
+        var numbersContainedInLine = Arrays.stream(Number.values())
+                .collect(Collectors.toMap(Number::name, (n) -> finalLine.contains(n.name())))
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue())
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList());
+
+        for (String n : numbersContainedInLine) {
+            line = line.replace(n, Number.valueOf(n).value);
+        }
+
+
+        return partOneLineDecoder(line);
     }
 
     enum Number {
-        one(1),
-        two(2),
-        three(3),
-        four(4),
-        five(5),
-        six(6),
-        seven(7),
-        eight(8),
-        nine(9);
+        one("1"),
+        two("2"),
+        three("3"),
+        four("4"),
+        five("5"),
+        six("6"),
+        seven("7"),
+        eight("8"),
+        nine("9");
 
-        private final int value;
+        private final String value;
 
-        Number(int value) {
+        Number(String value) {
             this.value = value;
         }
+
     }
 
 }

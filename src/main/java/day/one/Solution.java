@@ -2,10 +2,8 @@ package day.one;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 public class Solution {
@@ -90,10 +88,15 @@ public class Solution {
                 .map(entry -> entry.getKey())
                 .collect(Collectors.toList());
 
-        for (String n : numbersContainedInLine) {
-            line = line.replace(n, Number.valueOf(n).value);
-        }
+        var sortedIndexes = numbersContainedInLine
+                .stream()
+                .collect(Collectors.toMap((n) -> finalLine.indexOf(n), (n) -> n))
+                .entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
+        for(Map.Entry<Integer, String> entry : sortedIndexes.entrySet()) {
+            line = line.replace(entry.getValue(), Number.valueOf(entry.getValue()).value);
+        }
 
         return partOneLineDecoder(line);
     }

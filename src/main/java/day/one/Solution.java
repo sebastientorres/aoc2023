@@ -12,6 +12,12 @@ public class Solution {
     public static void main(String[] args) {
 
         String filePath = "src/main/resources/day/one/input";
+        var solution = new Solution();
+        System.out.println("solution.partOne() = " + solution.partOne(filePath));
+
+    }
+
+    int partOne(String filePath) {
         try {
             Scanner scanner = new Scanner(new File(filePath));
             scanner.useDelimiter("\n");
@@ -38,13 +44,13 @@ public class Solution {
                             return s;
                         }
                     })
-                    .mapToInt(Integer::parseInt).sum();
-            System.out.println("result = " + result);
+                    .mapToInt(Integer::parseInt)
+                    .sum();
+            return result;
 
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            return -1;
         }
-
     }
 
 }

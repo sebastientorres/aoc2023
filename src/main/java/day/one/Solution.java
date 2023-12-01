@@ -65,25 +65,18 @@ public class Solution {
             Scanner scanner = new Scanner(file);
             scanner.useDelimiter("\n");
 
+            List<Integer> integers = new ArrayList<>();
+
             while (scanner.hasNext()) {
-
-                List<Integer> indexes = new ArrayList<>();
-
                 var line = scanner.next();
-
-                for (Number n : Number.values()) {
-                    if (line.contains(n.name())) {
-
-                    }
-                }
-
+                integers.add(partTwoLineDecoder(line));
             }
+
+            return integers.stream().reduce(0, (subtotal, element) -> subtotal + element);
 
         } catch (Exception e) {
             return -1;
         }
-
-        return -1;
     }
 
     int partTwoLineDecoder(String line) {

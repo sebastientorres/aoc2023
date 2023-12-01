@@ -35,24 +35,29 @@ public class Solution {
                 digits.add(s);
             }
 
-            var result = digits.stream()
-                    .map(s -> {
-                        if (s.length() == 1) {
-                            return s+s;
-                        } else if (s.length() > 2) {
-                            return s.substring(0, 1) + s.substring(s.length() - 1, s.length());
-
-                        } else {
-                            return s;
-                        }
-                    })
-                    .mapToInt(Integer::parseInt)
-                    .sum();
-            return result;
+            return digits.stream()
+                    .map(this::partOneLineDecoder)
+                    .reduce(0, (subtotal, element) -> subtotal + element);
 
         } catch (FileNotFoundException e) {
             return -1;
         }
+    }
+
+    int partOneLineDecoder(String input) {
+        var digits = Arrays.stream(input.split(""))
+                .filter(t -> t.matches("\\d"))
+                .collect(Collectors.joining());
+
+        if (digits.length() == 1) {
+            return Integer.valueOf(digits+digits);
+        } else if (digits.length() > 2) {
+            return Integer.valueOf(digits.substring(0, 1) + digits.substring(digits.length() - 1, digits.length()));
+
+        } else {
+            return Integer.valueOf(digits);
+        }
+
     }
 
     int partTwo(File file) {
@@ -78,6 +83,10 @@ public class Solution {
             return -1;
         }
 
+        return -1;
+    }
+
+    int partTwoLineDecoder(String line) {
         return -1;
     }
 

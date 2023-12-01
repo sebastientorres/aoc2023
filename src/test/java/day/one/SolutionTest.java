@@ -14,20 +14,15 @@ class SolutionTest {
     @Test
     public void partOne() {
         var file = new File(path+"/inputPartOne");
-
         var actual = solution.partOne(file);
         assertEquals(77, actual);
-
     }
 
     @Test
     public void partTwo() {
         var file = new File(path+"/inputPartTwo");
-
         var actual = solution.partTwo(file);
-
         assertEquals(281, actual);
-
     }
 
 }

@@ -11,15 +11,16 @@ public class Solution {
 
     public static void main(String[] args) {
 
-        String filePath = "src/main/resources/day/one/input";
+        File file = new File("src/main/resources/day/one/input");
         var solution = new Solution();
-        System.out.println("solution.partOne() = " + solution.partOne(filePath));
+        System.out.println("solution.partOne() = " + solution.partOne(file));
+        System.out.println("solution.partTwo(file) = " + solution.partTwo(file));
 
     }
 
-    int partOne(String filePath) {
+    int partOne(File file) {
         try {
-            Scanner scanner = new Scanner(new File(filePath));
+            Scanner scanner = new Scanner(file);
             scanner.useDelimiter("\n");
 
             var digits = new ArrayList<String>();
@@ -51,6 +52,11 @@ public class Solution {
         } catch (FileNotFoundException e) {
             return -1;
         }
+    }
+
+    int partTwo(File file) {
+
+        return -1;
     }
 
 }

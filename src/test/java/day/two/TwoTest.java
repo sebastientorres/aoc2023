@@ -36,11 +36,11 @@ class TwoTest implements SolutionTest {
         var solution = new Two(file);
 
         var games = new HashMap<Integer, Map<Two.Colour, Integer>>();
-        games.put(1, game1());
-        games.put(2, game2());
-        games.put(3, game3());
-        games.put(4, game4());
-        games.put(5, game5());
+        games.put(1, partOneGame1());
+        games.put(2, partOneGame2());
+        games.put(3, partOneGame3());
+        games.put(4, partOneGame4());
+        games.put(5, partOneGame5());
 
         assertEquals(List.of(1, 2, 5), solution.indexOfGamesThatArePossible(games));
     }
@@ -59,28 +59,28 @@ class TwoTest implements SolutionTest {
         return Stream.of(
                 arguments(
                         "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green",
-                        game1()
+                        partOneGame1()
                 ),
                 arguments(
                         "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue",
-                        game2()
+                        partOneGame2()
                 ),
                 arguments(
                         "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red",
-                        game3()
+                        partOneGame3()
                 ),
                 arguments(
                         "Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red",
-                        game4()
+                        partOneGame4()
                 ),
                 arguments(
                         "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green",
-                        game5()
+                        partOneGame5()
                 )
         );
     }
 
-    static Map<Two.Colour, Integer> game1() {
+    static Map<Two.Colour, Integer> partOneGame1() {
         var map = new HashMap<Two.Colour, Integer>();
         map.put(Two.Colour.blue, 6);
         map.put(Two.Colour.red, 4);
@@ -88,7 +88,7 @@ class TwoTest implements SolutionTest {
         return map;
     }
 
-    static Map<Two.Colour, Integer> game2() {
+    static Map<Two.Colour, Integer> partOneGame2() {
         var map = new HashMap<Two.Colour, Integer>();
         map.put(Two.Colour.blue, 4);
         map.put(Two.Colour.red, 1);
@@ -96,7 +96,7 @@ class TwoTest implements SolutionTest {
         return map;
     }
 
-    static Map<Two.Colour, Integer> game3() {
+    static Map<Two.Colour, Integer> partOneGame3() {
         var map = new HashMap<Two.Colour, Integer>();
         map.put(Two.Colour.blue, 6);
         map.put(Two.Colour.red, 20);
@@ -104,7 +104,7 @@ class TwoTest implements SolutionTest {
         return map;
     }
 
-    static Map<Two.Colour, Integer> game4() {
+    static Map<Two.Colour, Integer> partOneGame4() {
         var map = new HashMap<Two.Colour, Integer>();
         map.put(Two.Colour.blue, 15);
         map.put(Two.Colour.red, 14);
@@ -112,7 +112,7 @@ class TwoTest implements SolutionTest {
         return map;
     }
 
-    static Map<Two.Colour, Integer> game5() {
+    static Map<Two.Colour, Integer> partOneGame5() {
         var map = new HashMap<Two.Colour, Integer>();
         map.put(Two.Colour.blue, 2);
         map.put(Two.Colour.red, 6);

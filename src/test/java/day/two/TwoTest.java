@@ -65,41 +65,41 @@ class TwoTest implements SolutionTest {
 
     static Map<Two.Colour, Integer> game1() {
         var map = new HashMap<Two.Colour, Integer>();
-        map.put(Two.Colour.blue, 9);
-        map.put(Two.Colour.red, 5);
-        map.put(Two.Colour.green, 4);
+        map.put(Two.Colour.blue, 6);
+        map.put(Two.Colour.red, 4);
+        map.put(Two.Colour.green, 2);
         return map;
     }
 
     static Map<Two.Colour, Integer> game2() {
         var map = new HashMap<Two.Colour, Integer>();
-        map.put(Two.Colour.blue, 6);
+        map.put(Two.Colour.blue, 4);
         map.put(Two.Colour.red, 1);
-        map.put(Two.Colour.green, 6);
+        map.put(Two.Colour.green, 3);
         return map;
     }
 
     static Map<Two.Colour, Integer> game3() {
         var map = new HashMap<Two.Colour, Integer>();
-        map.put(Two.Colour.blue, 11);
-        map.put(Two.Colour.red, 25);
-        map.put(Two.Colour.green, 26);
+        map.put(Two.Colour.blue, 6);
+        map.put(Two.Colour.red, 20);
+        map.put(Two.Colour.green, 13);
         return map;
     }
 
     static Map<Two.Colour, Integer> game4() {
         var map = new HashMap<Two.Colour, Integer>();
-        map.put(Two.Colour.blue, 21);
-        map.put(Two.Colour.red, 23);
-        map.put(Two.Colour.green, 7);
+        map.put(Two.Colour.blue, 15);
+        map.put(Two.Colour.red, 14);
+        map.put(Two.Colour.green, 3);
         return map;
     }
 
     static Map<Two.Colour, Integer> game5() {
         var map = new HashMap<Two.Colour, Integer>();
-        map.put(Two.Colour.blue, 3);
-        map.put(Two.Colour.red, 7);
-        map.put(Two.Colour.green, 5);
+        map.put(Two.Colour.blue, 2);
+        map.put(Two.Colour.red, 6);
+        map.put(Two.Colour.green, 3);
         return map;
     }
 

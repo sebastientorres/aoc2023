@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -23,7 +22,7 @@ public class Two implements Solution<Integer, Integer> {
 
     private final Map<Colour, Integer> maxCounts = Map.of(
             red, 12,
-            Colour.green, 13,
+            green, 13,
             blue, 14
     );
 
@@ -87,7 +86,8 @@ public class Two implements Solution<Integer, Integer> {
                 var count = Integer.valueOf(group[0]);
                 if (map.containsKey(colour)) {
                     int previousCount = map.get(colour);
-                    map.put(colour, previousCount + count);
+                    var value = previousCount < count ? count : previousCount;
+                    map.put(colour, value);
                 } else {
                     map.put(colour, count);
                 }

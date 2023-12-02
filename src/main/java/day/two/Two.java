@@ -88,9 +88,9 @@ public class Two implements Solution<Integer, Integer> {
                 .filter(entry -> {
                     var map = entry.getValue();
 
-                    return map.get(red) < maxCounts.get(red)
-                            && map.get(green) < maxCounts.get(green)
-                            &&  map.get(blue) < maxCounts.get(blue);
+                    return map.get(red) <= maxCounts.get(red)
+                            && map.get(green) <= maxCounts.get(green)
+                            &&  map.get(blue) <= maxCounts.get(blue);
                 })
                 .map(entry -> entry.getKey())
                 .reduce(0, (a, b) -> a + b);
@@ -117,7 +117,7 @@ public class Two implements Solution<Integer, Integer> {
                 var count = Integer.valueOf(group[0]);
                 if (map.containsKey(colour)) {
                     int previousCount = map.get(colour);
-                    var value = previousCount < count ? count : previousCount;
+                    var value = previousCount <= count ? count : previousCount;
                     map.put(colour, value);
                 } else {
                     map.put(colour, count);

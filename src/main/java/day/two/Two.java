@@ -49,20 +49,18 @@ public class Two implements Solution<Integer, Integer> {
     }
 
     int sumGamesThatWork(HashMap<Integer, Map<Colour, Integer>> games) {
-        int sum = 0;
+        return games
+                .entrySet()
+                .stream()
+                .filter(entry -> {
+                    var map = entry.getValue();
 
-        for (Map.Entry<Integer, Map<Colour, Integer>> entry : games.entrySet()) {
-            var map = entry.getValue();
-
-            if (map.get(red) < maxCounts.get(red)
-                    && map.get(green) < maxCounts.get(green)
-                    &&  map.get(blue) < maxCounts.get(blue)) {
-                sum += entry.getKey();
-            }
-
-        }
-
-        return sum;
+                    return map.get(red) < maxCounts.get(red)
+                            && map.get(green) < maxCounts.get(green)
+                            &&  map.get(blue) < maxCounts.get(blue);
+                })
+                .map(entry -> entry.getKey())
+                .reduce(0, (a, b) -> a + b);
     }
 
     @Override

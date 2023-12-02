@@ -1,6 +1,7 @@
 package day.one;
 
 import day.Solution;
+import day.SolutionTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -12,13 +13,16 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.*;
 
-class OneTest {
+class OneTest implements SolutionTest {
 
-    private static final String path = "src/test/resources/day/one";
+    @Override
+    public String geDay() {
+        return "1";
+    }
 
     @Test
     public void partOne() {
-        var file = new File(path+"/inputPartOne");
+        var file = new File(getPath() + "/inputPartOne");
         Solution solution = new One(file);
         var actual = solution.partOne();
         assertEquals(142, actual);
@@ -33,7 +37,7 @@ class OneTest {
 
     @Test
     public void partTwo() {
-        var file = new File(path+"/inputPartTwo");
+        var file = new File(getPath() + "/inputPartTwo");
         Solution solution = new One(file);
         var actual = solution.partTwo();
         assertEquals(281, actual);

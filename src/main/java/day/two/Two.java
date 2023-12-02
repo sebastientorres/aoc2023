@@ -3,6 +3,7 @@ package day.two;
 import day.Solution;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.File;
 
@@ -10,15 +11,16 @@ import java.io.File;
 @NoArgsConstructor
 public class Two implements Solution<Integer, Integer> {
 
+    @Setter
     private File file;
 
     @Override
     public Integer partOne() {
-        return null;
+        return 100;
     }
 
     @Override
     public Integer partTwo() {
-        return null;
+        return -2;
     }
 }

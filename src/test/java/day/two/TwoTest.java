@@ -1,5 +1,11 @@
 package day.two;
 
-class TwoTest {
+import day.SolutionTest;
 
+class TwoTest implements SolutionTest {
+
+    @Override
+    public String geDay() {
+        return "2";
+    }
 }

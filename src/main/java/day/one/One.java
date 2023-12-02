@@ -1,24 +1,43 @@
 package day.one;
 
+import day.Solution;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.function.BinaryOperator;
-import java.util.stream.Collectors;
 
-public class Solution {
+@AllArgsConstructor
+@NoArgsConstructor
+public class One implements Solution<Integer, Integer> {
 
     public static void main(String[] args) {
 
         File file = new File("src/main/resources/day/one/input");
-        var solution = new Solution();
-        System.out.println("solution.partOne() = " + solution.partOne(file));
-        System.out.println("solution.partTwo(file) = " + solution.partTwo(file));
+        Solution solution = new One(file);
+        System.out.println("solution.partOne() = " + solution.partOne());
+        System.out.println("solution.partTwo(file) = " + solution.partTwo());
 
     }
 
     private final static BinaryOperator<Integer> integerAccumulator = (a, b) -> a + b;
     private final static BinaryOperator<String> stringAccumulator = (a, b) -> a + b;
+
+    private File file;
+
+    @Override
+    public Integer partOne() {
+        return partOne(file);
+    }
+
+    @Override
+    public Integer partTwo() {
+        return partTwo(file);
+    }
 
     int partOne(File file) {
         try {

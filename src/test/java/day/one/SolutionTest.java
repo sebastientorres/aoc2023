@@ -62,7 +62,9 @@ class SolutionTest {
                 arguments("zoneight234", 14),
                 arguments("7pqrstsixteen", 76),
                 arguments("eighthree", 83),
-                arguments("sevenine", 79)
+                arguments("eighthree4vnfoisfive", 85),
+                arguments("sevenine", 79),
+                arguments("sevenine2", 72)
         );
     }
 

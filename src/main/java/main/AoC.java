@@ -1,3 +1,5 @@
+package main;
+
 import day.Solution;
 import day.one.One;
 import day.two.Two;

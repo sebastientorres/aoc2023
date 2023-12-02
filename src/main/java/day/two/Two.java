@@ -97,9 +97,35 @@ public class Two implements Solution<Integer, Integer> {
                 .reduce(0, (a, b) -> a + b);
     }
 
+    int gamePower(Map<Colour, Integer> game) {
+        return game
+                .values()
+                .stream()
+                .reduce(1, (a, b) -> a * b);
+    }
+
     @Override
     public Integer partTwo() {
-        return -2;
+        var games = new HashMap<Integer, Map<Colour, Integer>>();
+        try {
+            Scanner scanner = new Scanner(file);
+            scanner.useDelimiter("\n");
+
+            while (scanner.hasNext()) {
+                var game = scanner.next();
+                var gameIndex = Integer.valueOf(game.split(":")[0].split(" ")[1]);
+
+                games.put(gameIndex, partOneLineParser(game));
+            }
+
+        } catch (FileNotFoundException e) {
+            return -1;
+        }
+        return sumThePowers(games);
+    }
+
+    int sumThePowers(Map<Integer, Map<Colour, Integer>> games) {
+        return games.values().stream().map(this::gamePower).reduce(0, (a, b) -> a + b);
     }
 
     private static BiFunction<Integer, Integer, Integer> max = (a, b) -> a <= b ? b : a;

@@ -3,7 +3,7 @@ package day.one;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 public class Solution {
@@ -17,6 +17,9 @@ public class Solution {
 
     }
 
+    private final static BinaryOperator<Integer> integerAccumulator = (a, b) -> a + b;
+    private final static BinaryOperator<String> stringAccumulator = (a, b) -> a + b;
+
     int partOne(File file) {
         try {
             Scanner scanner = new Scanner(file);
@@ -29,13 +32,13 @@ public class Solution {
                 var next = scanner.next();
                 var s = Arrays.stream(next.split(""))
                         .filter(t -> t.matches("\\d"))
-                        .collect(Collectors.joining(""));
+                        .reduce("", stringAccumulator);
                 digits.add(s);
             }
 
             return digits.stream()
                     .map(this::partOneLineDecoder)
-                    .reduce(0, (subtotal, element) -> subtotal + element);
+                    .reduce(0, integerAccumulator);
 
         } catch (FileNotFoundException e) {
             return -1;
@@ -70,7 +73,7 @@ public class Solution {
                 integers.add(partTwoLineDecoder(line));
             }
 
-            return integers.stream().reduce(0, (subtotal, element) -> subtotal + element);
+            return integers.stream().reduce(0, integerAccumulator);
 
         } catch (Exception e) {
             return -1;
@@ -78,27 +81,26 @@ public class Solution {
     }
 
     int partTwoLineDecoder(String line) {
+        String[] numbers = new String[line.length()];
 
-        String finalLine = line;
-        var numbersContainedInLine = Arrays.stream(Number.values())
-                .collect(Collectors.toMap(Number::name, (n) -> finalLine.contains(n.name())))
-                .entrySet()
-                .stream()
-                .filter(entry -> entry.getValue())
-                .map(entry -> entry.getKey())
-                .collect(Collectors.toList());
+        var tokens = line.split("");
 
-        var sortedIndexes = numbersContainedInLine
-                .stream()
-                .collect(Collectors.toMap((n) -> finalLine.indexOf(n), (n) -> n))
-                .entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        for(Map.Entry<Integer, String> entry : sortedIndexes.entrySet()) {
-            line = line.replace(entry.getValue(), Number.valueOf(entry.getValue()).value);
+        for (Number n : Number.values()) {
+            if (line.contains(n.name())) {
+                numbers[line.indexOf(n.name())] = n.value;
+            }
         }
 
-        return partOneLineDecoder(line);
+        for (int i = 0; i < line.length(); i++) {
+            var t = tokens[i];
+            if (t.matches("\\d")) {
+                numbers[i] = t;
+            }
+        }
+
+        var thing = Arrays.stream(numbers).reduce("", stringAccumulator);
+
+        return partOneLineDecoder(thing);
     }
 
     enum Number {

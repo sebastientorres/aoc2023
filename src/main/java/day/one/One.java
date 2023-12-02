@@ -15,15 +15,6 @@ import java.util.function.BinaryOperator;
 @NoArgsConstructor
 public class One implements Solution<Integer, Integer> {
 
-    public static void main(String[] args) {
-
-        File file = new File("src/main/resources/day/one/input");
-        Solution solution = new One(file);
-        System.out.println("solution.partOne() = " + solution.partOne());
-        System.out.println("solution.partTwo(file) = " + solution.partTwo());
-
-    }
-
     private final static BinaryOperator<Integer> integerAccumulator = (a, b) -> a + b;
     private final static BinaryOperator<String> stringAccumulator = (a, b) -> a + b;
 

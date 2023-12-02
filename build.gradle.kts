@@ -1,10 +1,15 @@
 
 plugins {
-    id("java")
+    java
+    application
 }
 
 group = "2023.aoc"
 version = "1.0-SNAPSHOT"
+
+application {
+    mainClass.set("main.AoC")
+}
 
 repositories {
     mavenCentral()

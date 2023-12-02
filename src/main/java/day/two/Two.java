@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 import static day.two.Two.Colour.*;
@@ -101,7 +102,18 @@ public class Two implements Solution<Integer, Integer> {
         return -2;
     }
 
+    private static BiFunction<Integer, Integer, Integer> max = (a, b) -> a <= b ? b : a;
+    private static BiFunction<Integer, Integer, Integer> min = (a, b) -> a <= b ? a : b;
+
     public Map<Colour, Integer> partOneLineParser(String line) {
+        return lineParserWithFunction(line, max);
+    }
+
+    public  Map<Colour, Integer> partTwoLineParser(String line) {
+        return lineParserWithFunction(line, min);
+    }
+
+    public Map<Colour, Integer> lineParserWithFunction(String line, BiFunction<Integer, Integer, Integer> fn) {
         var map = new HashMap<Colour, Integer>();
 
         var indexOfColon = line.indexOf(":");
@@ -117,8 +129,7 @@ public class Two implements Solution<Integer, Integer> {
                 var count = Integer.valueOf(group[0]);
                 if (map.containsKey(colour)) {
                     int previousCount = map.get(colour);
-                    var value = previousCount <= count ? count : previousCount;
-                    map.put(colour, value);
+                    map.put(colour, fn.apply(previousCount, count));
                 } else {
                     map.put(colour, count);
                 }

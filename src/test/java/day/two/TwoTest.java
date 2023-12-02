@@ -55,26 +55,42 @@ class TwoTest implements SolutionTest {
         assertEquals(colourCount, actual);
     }
 
+    @ParameterizedTest
+    @MethodSource
+    void partTwoLineParser(String line, Map<Two.Colour, Integer> colourCount) {
+        Two solution = new Two();
+
+        var actual = solution.partTwoLineParser(line);
+
+        assertEquals(colourCount, actual);
+    }
+
+    private static String game1 = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green";
+    private static String game2 = "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue";
+    private static String game3 = "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red";
+    private static String game4 = "Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red";
+    private static String game5 = "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
+
     static Stream<Arguments> partOneLineParser() {
         return Stream.of(
                 arguments(
-                        "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green",
+                        game1,
                         partOneGame1()
                 ),
                 arguments(
-                        "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue",
+                        game2,
                         partOneGame2()
                 ),
                 arguments(
-                        "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red",
+                       game3,
                         partOneGame3()
                 ),
                 arguments(
-                        "Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red",
+                        game4,
                         partOneGame4()
                 ),
                 arguments(
-                        "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green",
+                       game5,
                         partOneGame5()
                 )
         );
@@ -119,5 +135,71 @@ class TwoTest implements SolutionTest {
         map.put(Two.Colour.green, 3);
         return map;
     }
+
+    static Stream<Arguments> partTwoLineParser() {
+        return Stream.of(
+                arguments(
+                        game1,
+                        partTwoGame1()
+                ),
+                arguments(
+                        game2,
+                        partTwoGame2()
+                ),
+                arguments(
+                        game3,
+                        partTwoGame3()
+                ),
+                arguments(
+                        game4,
+                        partTwoGame4()
+                ),
+                arguments(
+                        game5,
+                        partTwoGame5()
+                )
+        );
+    }
+
+    static Map<Two.Colour, Integer> partTwoGame1() {
+        return Map.of(
+                Two.Colour.blue, 3,
+                Two.Colour.red, 1,
+                Two.Colour.green, 2
+        );
+    }
+
+    static Map<Two.Colour, Integer> partTwoGame2() {
+        return Map.of(
+                Two.Colour.blue, 1,
+                Two.Colour.red, 1,
+                Two.Colour.green, 1
+        );
+    }
+
+    static Map<Two.Colour, Integer> partTwoGame3() {
+        return Map.of(
+                Two.Colour.blue, 5,
+                Two.Colour.red, 1,
+                Two.Colour.green, 5
+        );
+    }
+
+    static Map<Two.Colour, Integer> partTwoGame4() {
+        return Map.of(
+                Two.Colour.blue, 6,
+                Two.Colour.red, 3,
+                Two.Colour.green, 1
+        );
+    }
+
+    static Map<Two.Colour, Integer> partTwoGame5() {
+        return Map.of(
+                Two.Colour.blue, 1,
+                Two.Colour.red, 1,
+                Two.Colour.green, 2
+        );
+    }
+
 
 }

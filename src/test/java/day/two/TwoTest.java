@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -26,6 +27,22 @@ class TwoTest implements SolutionTest {
         File file = new File(getPath() + "/inputPartOne");
         var solution = new Two(file);
         assertEquals(8, solution.partOne());
+    }
+
+
+    @Test
+    void possibleGames() {
+        File file = new File(getPath() + "/inputPartOne");
+        var solution = new Two(file);
+
+        var games = new HashMap<Integer, Map<Two.Colour, Integer>>();
+        games.put(1, game1());
+        games.put(2, game2());
+        games.put(3, game3());
+        games.put(4, game4());
+        games.put(5, game5());
+
+        assertEquals(List.of(1, 2, 5), solution.indexOfGamesThatArePossible(games));
     }
 
     @ParameterizedTest

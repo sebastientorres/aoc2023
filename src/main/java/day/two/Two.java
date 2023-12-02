@@ -8,8 +8,10 @@ import lombok.Setter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import static day.two.Two.Colour.*;
 
@@ -46,6 +48,21 @@ public class Two implements Solution<Integer, Integer> {
         }
 
         return sumGamesThatWork(games);
+    }
+
+    List<Integer> indexOfGamesThatArePossible(Map<Integer, Map<Colour, Integer>> games) {
+        return games
+                .entrySet()
+                .stream()
+                .filter(entry -> {
+                    var map = entry.getValue();
+
+                    return map.get(red) < maxCounts.get(red)
+                            && map.get(green) < maxCounts.get(green)
+                            &&  map.get(blue) < maxCounts.get(blue);
+                })
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList());
     }
 
     int sumGamesThatWork(HashMap<Integer, Map<Colour, Integer>> games) {

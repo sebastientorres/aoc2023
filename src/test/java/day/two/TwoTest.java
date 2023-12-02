@@ -1,5 +1,6 @@
 package day.two;
 
+import day.Solution;
 import day.SolutionTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,10 +26,16 @@ class TwoTest implements SolutionTest {
     @Test
     void partOne() {
         File file = new File(getPath() + "/inputPartOne");
-        var solution = new Two(file);
+        Solution solution = new Two(file);
         assertEquals(8, solution.partOne());
     }
 
+    @Test
+    void partTwo() {
+        File file = new File(getPath() + "/inputPartOne");
+        Solution solution = new Two(file);
+        assertEquals(2286, solution.partTwo());
+    }
 
     @Test
     void possibleGames() {
@@ -57,12 +64,10 @@ class TwoTest implements SolutionTest {
 
     @ParameterizedTest
     @MethodSource
-    void partTwoLineParser(String line, Map<Two.Colour, Integer> colourCount) {
-        Two solution = new Two();
-
-        var actual = solution.partTwoLineParser(line);
-
-        assertEquals(colourCount, actual);
+    void gamePower(String game, int expected) {
+        var solution = new Two();
+        var actual = solution.gamePower(solution.partOneLineParser(game));
+        assertEquals(expected, actual);
     }
 
     private static String game1 = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green";
@@ -136,70 +141,14 @@ class TwoTest implements SolutionTest {
         return map;
     }
 
-    static Stream<Arguments> partTwoLineParser() {
+    static Stream<Arguments> gamePower() {
         return Stream.of(
-                arguments(
-                        game1,
-                        partTwoGame1()
-                ),
-                arguments(
-                        game2,
-                        partTwoGame2()
-                ),
-                arguments(
-                        game3,
-                        partTwoGame3()
-                ),
-                arguments(
-                        game4,
-                        partTwoGame4()
-                ),
-                arguments(
-                        game5,
-                        partTwoGame5()
-                )
+                arguments(game1, 48),
+                arguments(game2, 12),
+                arguments(game3, 1560),
+                arguments(game4, 630),
+                arguments(game5, 36)
         );
     }
-
-    static Map<Two.Colour, Integer> partTwoGame1() {
-        return Map.of(
-                Two.Colour.blue, 3,
-                Two.Colour.red, 1,
-                Two.Colour.green, 2
-        );
-    }
-
-    static Map<Two.Colour, Integer> partTwoGame2() {
-        return Map.of(
-                Two.Colour.blue, 1,
-                Two.Colour.red, 1,
-                Two.Colour.green, 1
-        );
-    }
-
-    static Map<Two.Colour, Integer> partTwoGame3() {
-        return Map.of(
-                Two.Colour.blue, 5,
-                Two.Colour.red, 1,
-                Two.Colour.green, 5
-        );
-    }
-
-    static Map<Two.Colour, Integer> partTwoGame4() {
-        return Map.of(
-                Two.Colour.blue, 6,
-                Two.Colour.red, 3,
-                Two.Colour.green, 1
-        );
-    }
-
-    static Map<Two.Colour, Integer> partTwoGame5() {
-        return Map.of(
-                Two.Colour.blue, 1,
-                Two.Colour.red, 1,
-                Two.Colour.green, 2
-        );
-    }
-
 
 }

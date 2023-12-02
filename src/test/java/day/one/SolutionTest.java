@@ -60,7 +60,9 @@ class SolutionTest {
                 arguments("xtwone3four", 24),
                 arguments("4nineeightseven2", 42),
                 arguments("zoneight234", 14),
-                arguments("7pqrstsixteen", 76)
+                arguments("7pqrstsixteen", 76),
+                arguments("eighthree", 83),
+                arguments("sevenine", 79)
         );
     }
 

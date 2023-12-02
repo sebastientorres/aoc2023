@@ -48,17 +48,20 @@ public class Solution {
     int partOneLineDecoder(String input) {
         var digits = Arrays.stream(input.split(""))
                 .filter(t -> t.matches("\\d"))
-                .collect(Collectors.joining());
+                .reduce(stringAccumulator).get();
+
+        var result = "";
 
         if (digits.length() == 1) {
-            return Integer.valueOf(digits+digits);
+            result = digits + digits;
         } else if (digits.length() > 2) {
-            return Integer.valueOf(digits.substring(0, 1) + digits.substring(digits.length() - 1, digits.length()));
+            result = digits.substring(0, 1) + digits.substring(digits.length() - 1, digits.length());
 
         } else {
-            return Integer.valueOf(digits);
+            result = digits;
         }
 
+        return Integer.valueOf(result);
     }
 
     int partTwo(File file) {

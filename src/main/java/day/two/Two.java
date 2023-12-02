@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import static day.two.Two.Colour.*;
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class Two implements Solution<Integer, Integer> {
@@ -19,23 +21,49 @@ public class Two implements Solution<Integer, Integer> {
     @Setter
     private File file;
 
+    private final Map<Colour, Integer> maxCounts = Map.of(
+            red, 12,
+            Colour.green, 13,
+            blue, 14
+    );
+
     @Override
     public Integer partOne() {
 
+        var games = new HashMap<Integer, Map<Colour, Integer>>();
         try {
             Scanner scanner = new Scanner(file);
             scanner.useDelimiter("\n");
 
-            var digits = new ArrayList<String>();
-
             while (scanner.hasNext()) {
+                var game = scanner.next();
+                var gameIndex = Integer.valueOf(game.split(":")[0].split(" ")[1]);
 
+                games.put(gameIndex, partOneLineParser(game));
             }
+
         } catch (FileNotFoundException e) {
             return -1;
         }
 
-        return 100;
+        return sumGamesThatWork(games);
+    }
+
+    int sumGamesThatWork(HashMap<Integer, Map<Colour, Integer>> games) {
+        int sum = 0;
+
+        for (Map.Entry<Integer, Map<Colour, Integer>> entry : games.entrySet()) {
+            var map = entry.getValue();
+
+            if (map.get(red) < maxCounts.get(red)
+                    && map.get(green) < maxCounts.get(green)
+                    &&  map.get(blue) < maxCounts.get(blue)) {
+                sum += entry.getKey();
+            }
+
+        }
+
+        return sum;
     }
 
     @Override

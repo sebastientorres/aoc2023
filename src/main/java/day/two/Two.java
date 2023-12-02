@@ -57,6 +57,22 @@ public class Two implements Solution<Integer, Integer> {
                 .filter(entry -> {
                     var map = entry.getValue();
 
+                    var r = map.get(red);
+                    var g = map.get(green);
+                    var b = map.get(blue);
+
+                    if (null == r) {
+                        r = 0;
+                    }
+
+                    if (null == g) {
+                        g = 0;
+                    }
+
+                    if (null == b) {
+                        b = 0;
+                    }
+
                     return map.get(red) < maxCounts.get(red)
                             && map.get(green) < maxCounts.get(green)
                             &&  map.get(blue) < maxCounts.get(blue);

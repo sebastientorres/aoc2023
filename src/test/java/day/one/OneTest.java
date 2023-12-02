@@ -1,9 +1,9 @@
 package day.one;
 
+import day.Solution;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.File;
@@ -12,35 +12,38 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.*;
 
-class SolutionTest {
+class OneTest {
 
     private static final String path = "src/test/resources/day/one";
-    private final Solution solution = new Solution();
 
     @Test
     public void partOne() {
         var file = new File(path+"/inputPartOne");
-        var actual = solution.partOne(file);
+        Solution solution = new One(file);
+        var actual = solution.partOne();
         assertEquals(142, actual);
     }
 
     @ParameterizedTest
     @MethodSource
     void partOneLineDecoder(String input, int expected) {
-        assertEquals(expected, solution.partOneLineDecoder(input));
+        var one = new One();
+        assertEquals(expected, one.partOneLineDecoder(input));
     }
 
     @Test
     public void partTwo() {
         var file = new File(path+"/inputPartTwo");
-        var actual = solution.partTwo(file);
+        Solution solution = new One(file);
+        var actual = solution.partTwo();
         assertEquals(281, actual);
     }
 
     @ParameterizedTest
     @MethodSource
     void partTwoLineDecoder(String input, int expected) {
-        assertEquals(expected, solution.partTwoLineDecoder(input));
+        var one = new One();
+        assertEquals(expected, one.partTwoLineDecoder(input));
     }
 
     static Stream<Arguments> partOneLineDecoder() {

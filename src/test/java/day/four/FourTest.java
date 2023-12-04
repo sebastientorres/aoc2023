@@ -1,15 +1,18 @@
 package day.four;
 
+import day.Solution;
+import day.SolutionTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class FourTest {
+class FourTest extends SolutionTest {
 
     @ParameterizedTest
     @MethodSource
@@ -17,6 +20,11 @@ class FourTest {
         var solution = new Four();
         var actual = solution.pointsFromLine(line);
         assertEquals(expectedPoints, actual);
+    }
+    @Test
+    void partOne() {
+        Solution solution = new Four(createInputFile("inputPartOne"));
+        assertEquals(13, solution.partOne());
     }
 
     static Stream<Arguments> partOneLineParser() {
@@ -29,7 +37,6 @@ class FourTest {
                 arguments(card6, card5And6Points)
         );
     }
-
 
     static String card1 = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53";
     static String card2 = "Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19";

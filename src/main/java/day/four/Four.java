@@ -18,10 +18,10 @@ public class Four implements Solution<Integer, Integer> {
 
     protected int pointsFromLine(String line) {
 
-        var tokens = line.substring(line.indexOf(":")+1).split("\\|");
+        var tokens = line.trim().substring(line.indexOf(":")+2).split("\\|");
 
-        var winningNumbers = Arrays.stream(tokens[0].trim().split(" ")).collect(Collectors.toSet());
-        var cardNumbers = Arrays.stream(tokens[1].trim().split(" ")).collect(Collectors.toSet());
+        var winningNumbers = Arrays.stream(tokens[0].trim().split(" ")).filter(t -> !t.isBlank()).collect(Collectors.toSet());
+        var cardNumbers = Arrays.stream(tokens[1].trim().split(" ")).filter(t -> !t.isBlank()).collect(Collectors.toSet());
 
         winningNumbers.retainAll(cardNumbers);
 

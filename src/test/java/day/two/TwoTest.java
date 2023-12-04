@@ -16,12 +16,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class TwoTest implements SolutionTest {
-
-    @Override
-    public String geDay() {
-        return "2";
-    }
+class TwoTest extends SolutionTest {
 
     @Test
     void partOne() {

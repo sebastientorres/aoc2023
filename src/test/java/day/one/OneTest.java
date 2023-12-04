@@ -13,13 +13,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.*;
 
-class OneTest implements SolutionTest {
-
-    @Override
-    public String geDay() {
-        return "1";
-    }
-
+class OneTest extends SolutionTest {
     @Test
     public void partOne() {
         var file = new File(getPath() + "/inputPartOne");

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class Four implements Solution<Integer, Integer> {
 
-    private Set<String> games = new HashSet<>();
+    private List<String> games = new ArrayList<>();
 
     public Four(File file) {
 
@@ -41,15 +41,7 @@ public class Four implements Solution<Integer, Integer> {
     }
 
     protected int pointsFromLine(String line) {
-
-        var tokens = line.trim().substring(line.indexOf(":")+2).split("\\|");
-
-        var winningNumbers = Arrays.stream(tokens[0].trim().split(" ")).filter(t -> !t.isBlank()).collect(Collectors.toSet());
-        var cardNumbers = Arrays.stream(tokens[1].trim().split(" ")).filter(t -> !t.isBlank()).collect(Collectors.toSet());
-
-        winningNumbers.retainAll(cardNumbers);
-
-        int count = winningNumbers.size();
+        int count = winningHandsFromLine(line);
 
         if (count < 2) {
             return count;
@@ -65,8 +57,28 @@ public class Four implements Solution<Integer, Integer> {
 
     }
 
+    protected int winningHandsFromLine(String line ) {
+        var tokens = line.trim().substring(line.indexOf(":")+2).split("\\|");
+
+        var winningNumbers = Arrays.stream(tokens[0].trim().split(" ")).filter(t -> !t.isBlank()).collect(Collectors.toSet());
+        var cardNumbers = Arrays.stream(tokens[1].trim().split(" ")).filter(t -> !t.isBlank()).collect(Collectors.toSet());
+
+        winningNumbers.retainAll(cardNumbers);
+        return winningNumbers.size();
+    }
+
     protected List<String> wonGamesFromLine(String line) {
         var wonGames = new ArrayList<String>();
+
+        var points = winningHandsFromLine(line);
+
+        var gameIndex = extractGameIndex(line);
+
+        for (int i = 0; i < points; i++) {
+            if (i < games.size()) {
+                wonGames.add(games.get(i + gameIndex));
+            }
+        }
 
         return wonGames;
     }

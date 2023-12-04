@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -21,8 +24,9 @@ public class Four implements Solution<Integer, Integer> {
         var winningNumbers = Arrays.stream(tokens[0].trim().split(" ")).collect(Collectors.toSet());
         var cardNumbers = Arrays.stream(tokens[1].trim().split(" ")).collect(Collectors.toSet());
 
-        int count = Math.toIntExact(cardNumbers.stream().filter(c -> winningNumbers.contains(c))
-                .count());
+        winningNumbers.retainAll(cardNumbers);
+
+        int count = winningNumbers.size();
 
         if (count < 2) {
             return count;
@@ -40,7 +44,22 @@ public class Four implements Solution<Integer, Integer> {
 
     @Override
     public Integer partOne() {
-        return null;
+        try {
+            Scanner scanner = new Scanner(file);
+            scanner.useDelimiter("\n");
+
+            int sum = 0;
+
+            while (scanner.hasNext()) {
+
+                var next = scanner.next().trim();
+                sum += pointsFromLine(next);
+            }
+
+            return sum;
+        } catch (FileNotFoundException e) {
+            return -1;
+        }
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,11 +28,25 @@ class FourTest extends SolutionTest {
         assertEquals(13, solution.partOne());
     }
 
+    @Test
+    void partTwo() {
+        Solution solution = new Four(createInputFile("inputPartOne"));
+        assertEquals(30, solution.partTwo());
+    }
+
     @ParameterizedTest
     @MethodSource
     void extractGameIndex(String game, int expected) {
         Four four = new Four();
         var actual = four.extractGameIndex(game);
+        assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    void wonGamesFromLine(String line, List<String> expected) {
+        var four = new Four(createInputFile("inputPartOne"));
+        var actual = four.wonGamesFromLine(line);
         assertEquals(expected, actual);
     }
 
@@ -54,6 +69,17 @@ class FourTest extends SolutionTest {
                 arguments(card4, 4),
                 arguments(card5, 5),
                 arguments(card6, 6)
+        );
+    }
+
+    static Stream<Arguments> wonGamesFromLine() {
+        return Stream.of(
+                arguments(card1, List.of(card2, card3, card4, card5)),
+                arguments(card2, List.of(card3, card4)),
+                arguments(card3, List.of(card4, card5)),
+                arguments(card4, List.of(card5)),
+                arguments(card5, List.of()),
+                arguments(card6, List.of())
         );
     }
 

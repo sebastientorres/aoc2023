@@ -1,6 +1,7 @@
 package main;
 
 import day.Solution;
+import day.four.Four;
 import day.one.One;
 import day.three.Three;
 import day.two.Two;
@@ -26,6 +27,7 @@ public class AoC implements Solution {
         dayToSolutionMap.put(1, new One(createSolutionFile()));
         dayToSolutionMap.put(2, new Two(createSolutionFile()));
         dayToSolutionMap.put(3, new Three(createSolutionFile()));
+        dayToSolutionMap.put(4, new Four(createSolutionFile()));
     }
 
     @Override

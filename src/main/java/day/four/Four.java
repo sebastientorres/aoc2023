@@ -6,15 +6,39 @@ import lombok.NoArgsConstructor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
 @NoArgsConstructor
 public class Four implements Solution<Integer, Integer> {
 
-    private File file;
+    private Set<String> games = new HashSet<>();
+
+    public Four(File file) {
+
+        try {
+            Scanner scanner = new Scanner(file);
+            scanner.useDelimiter("\n");
+
+            while (scanner.hasNext()) {
+                games.add(scanner.next().trim());
+            }
+
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 
     protected int pointsFromLine(String line) {
 
@@ -41,28 +65,37 @@ public class Four implements Solution<Integer, Integer> {
 
     }
 
+    protected List<String> wonGamesFromLine(String line) {
+        var wonGames = new ArrayList<String>();
+
+        return wonGames;
+    }
+
     @Override
     public Integer partOne() {
-        try {
-            Scanner scanner = new Scanner(file);
-            scanner.useDelimiter("\n");
-
-            int sum = 0;
-
-            while (scanner.hasNext()) {
-
-                var next = scanner.next().trim();
-                sum += pointsFromLine(next);
-            }
-
-            return sum;
-        } catch (FileNotFoundException e) {
-            return -1;
-        }
+        return games.stream().map(this::pointsFromLine).reduce(0, (a, b) -> a + b);
     }
 
     @Override
     public Integer partTwo() {
-        return null;
+        int sum = 0;
+
+        var initialWinnings = games.stream().map(this::wonGamesFromLine).flatMap(e -> e.stream()).collect(Collectors.toList());
+        Queue<String> wonGames = new ArrayDeque<>(initialWinnings);
+
+        sum = initialWinnings.size();
+
+        while (!wonGames.isEmpty()) {
+            var game = wonGames.poll();
+            var winnings = wonGamesFromLine(game);
+            sum += winnings.size();
+            wonGames.addAll(winnings);
+        }
+
+        return sum;
+    }
+
+    protected int extractGameIndex(String game) {
+        return Integer.valueOf(game.split("\\:")[0].trim().split(" ")[1].trim());
     }
 }

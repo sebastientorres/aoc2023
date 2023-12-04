@@ -27,6 +27,14 @@ class FourTest extends SolutionTest {
         assertEquals(13, solution.partOne());
     }
 
+    @ParameterizedTest
+    @MethodSource
+    void extractGameIndex(String game, int expected) {
+        Four four = new Four();
+        var actual = four.extractGameIndex(game);
+        assertEquals(expected, actual);
+    }
+
     static Stream<Arguments> partOneLineParser() {
         return Stream.of(
                 arguments(card1, card1Points),
@@ -35,6 +43,17 @@ class FourTest extends SolutionTest {
                 arguments(card4, card4Points),
                 arguments(card5, card5And6Points),
                 arguments(card6, card5And6Points)
+        );
+    }
+
+    static Stream<Arguments> extractGameIndex() {
+        return Stream.of(
+                arguments(card1, 1),
+                arguments(card2, 2),
+                arguments(card3, 3),
+                arguments(card4, 4),
+                arguments(card5, 5),
+                arguments(card6, 6)
         );
     }
 

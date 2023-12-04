@@ -92,10 +92,9 @@ public class Four implements Solution<Integer, Integer> {
     public Integer partTwo() {
         int sum = 0;
 
-        var initialWinnings = games.stream().map(this::wonGamesFromLine).flatMap(e -> e.stream()).collect(Collectors.toList());
-        Queue<String> wonGames = new ArrayDeque<>(initialWinnings);
+        Queue<String> wonGames = new ArrayDeque<>(games);
 
-        sum = initialWinnings.size();
+        sum = games.size();
 
         while (!wonGames.isEmpty()) {
             var game = wonGames.poll();
@@ -108,6 +107,10 @@ public class Four implements Solution<Integer, Integer> {
     }
 
     protected int extractGameIndex(String game) {
-        return Integer.valueOf(game.split("\\:")[0].trim().split(" ")[1].trim());
+        return Integer.valueOf(
+                Arrays.stream(game.split("\\:")[0].trim().split(" "))
+                        .filter(t -> !t.isBlank())
+                        .collect(Collectors.toList()).get(1).trim()
+        );
     }
 }

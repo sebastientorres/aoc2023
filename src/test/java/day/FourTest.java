@@ -1,5 +1,6 @@
-package day.four;
+package day;
 
+import day.Four;
 import day.Solution;
 import day.SolutionTest;
 import org.junit.jupiter.api.Test;

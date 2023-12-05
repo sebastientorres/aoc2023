@@ -1,5 +1,6 @@
-package day.one;
+package day;
 
+import day.One;
 import day.Solution;
 import day.SolutionTest;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ class OneTest extends SolutionTest {
     @Test
     public void partOne() {
         var file = new File(getPath() + "/inputPartOne");
-        Solution solution = new One(file);
+        Solution solution = new One();
         var actual = solution.partOne();
         assertEquals(142, actual);
     }
@@ -32,7 +33,7 @@ class OneTest extends SolutionTest {
     @Test
     public void partTwo() {
         var file = new File(getPath() + "/inputPartTwo");
-        Solution solution = new One(file);
+        Solution solution = new One();
         var actual = solution.partTwo();
         assertEquals(281, actual);
     }

@@ -1,6 +1,5 @@
-package day.two;
+package day;
 
-import day.Solution;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +13,7 @@ import java.util.Scanner;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-import static day.two.Two.Colour.*;
+import static day.Two.Colour.*;
 
 @AllArgsConstructor
 @NoArgsConstructor

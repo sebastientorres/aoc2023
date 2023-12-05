@@ -1,7 +1,8 @@
-package day.two;
+package day;
 
 import day.Solution;
 import day.SolutionTest;
+import day.Two;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

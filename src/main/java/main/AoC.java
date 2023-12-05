@@ -1,33 +1,41 @@
 package main;
 
 import day.Solution;
-import day.four.Four;
-import day.one.One;
-import day.three.Three;
-import day.two.Two;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.Map;
 
+@Service
+@RequiredArgsConstructor
+@RestController
+@RequestMapping("/api/aoc")
 public class AoC implements Solution {
 
     public static void main(String[] args) {
-        var aoc = new AoC();
 
-        System.out.println("Day " + aoc.today() + "'s solutions:");
-        System.out.println("Part one: " + aoc.partOne());
-        System.out.println("Part two: " + aoc.partTwo());
     }
 
-    Map<Integer, Solution> dayToSolutionMap = new HashMap<>();
+    private final Map<Integer, Solution> dayToSolutionMap;
 
-    {
-        dayToSolutionMap.put(1, new One(createSolutionFile()));
-        dayToSolutionMap.put(2, new Two(createSolutionFile()));
-        dayToSolutionMap.put(3, new Three(createSolutionFile()));
-        dayToSolutionMap.put(4, new Four(createSolutionFile()));
+    @GetMapping
+    public String getTodaysSolution() {
+        return getSolution(getToday());
+    }
+
+    @GetMapping("/{day}")
+    public String getSolutionForDay(@PathVariable Integer day) {
+        return getSolution(day);
+    }
+
+    private String getSolution(Integer day) {
+        var solution = dayToSolutionMap.get(day);
+        return "Day " + day + ", partOne = " + solution.partOne() + " partTwo = " + solution.partTwo();
     }
 
     @Override
@@ -44,8 +52,8 @@ public class AoC implements Solution {
         return LocalDateTime.now().getDayOfMonth();
     }
 
-    private File createSolutionFile() {
-        return new File("src/main/resources/day/" + today() + "/input");
+    int getToday() {
+        return today();
     }
 
 }

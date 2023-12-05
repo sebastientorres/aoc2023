@@ -11,7 +11,7 @@ class ThreeTest extends SolutionTest {
 
     @Test
     void partOne() {
-        Solution solution = new Three(createInputFile("inputPartOne"));
+        Solution solution = new Three();
         assertEquals(4361, solution.partOne());
     }
 

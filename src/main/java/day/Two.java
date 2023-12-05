@@ -3,6 +3,7 @@ package day;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,12 +16,11 @@ import java.util.stream.Collectors;
 
 import static day.Two.Colour.*;
 
-@AllArgsConstructor
 @NoArgsConstructor
-public class Two implements Solution<Integer, Integer> {
+@Service(Two.DAY)
+public class Two extends AbstractSolution implements Solution<Integer, Integer> {
 
-    @Setter
-    private File file;
+    public static final String DAY = "2";
 
     private final Map<Colour, Integer> maxCounts = Map.of(
             red, 12,
@@ -32,20 +32,11 @@ public class Two implements Solution<Integer, Integer> {
     public Integer partOne() {
 
         var games = new HashMap<Integer, Map<Colour, Integer>>();
-        try {
-            Scanner scanner = new Scanner(file);
-            scanner.useDelimiter("\n");
 
-            while (scanner.hasNext()) {
-                var game = scanner.next();
-                var gameIndex = Integer.valueOf(game.split(":")[0].split(" ")[1]);
-
-                games.put(gameIndex, partOneLineParser(game));
-            }
-
-        } catch (FileNotFoundException e) {
-            return -1;
-        }
+        getLines().stream().forEach(l -> {
+            var gameIndex = Integer.valueOf(l.split(":")[0].split(" ")[1]);
+            games.put(gameIndex, partOneLineParser(l));
+        });
 
         return sumGamesThatWork(games);
     }
@@ -106,20 +97,12 @@ public class Two implements Solution<Integer, Integer> {
     @Override
     public Integer partTwo() {
         var games = new HashMap<Integer, Map<Colour, Integer>>();
-        try {
-            Scanner scanner = new Scanner(file);
-            scanner.useDelimiter("\n");
 
-            while (scanner.hasNext()) {
-                var game = scanner.next();
-                var gameIndex = Integer.valueOf(game.split(":")[0].split(" ")[1]);
+        getLines().stream().forEach(l -> {
+            var gameIndex = Integer.valueOf(l.split(":")[0].split(" ")[1]);
+            games.put(gameIndex, partOneLineParser(l));
+        });
 
-                games.put(gameIndex, partOneLineParser(game));
-            }
-
-        } catch (FileNotFoundException e) {
-            return -1;
-        }
         return sumThePowers(games);
     }
 
@@ -162,6 +145,11 @@ public class Two implements Solution<Integer, Integer> {
         }
 
         return map;
+    }
+
+    @Override
+    public int getDay() {
+        return Integer.valueOf(DAY);
     }
 
     enum Colour {

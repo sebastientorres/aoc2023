@@ -21,22 +21,19 @@ class TwoTest extends SolutionTest {
 
     @Test
     void partOne() {
-        File file = new File(getPath() + "/inputPartOne");
-        Solution solution = new Two(file);
+        Solution solution = new Two();
         assertEquals(8, solution.partOne());
     }
 
     @Test
     void partTwo() {
-        File file = new File(getPath() + "/inputPartOne");
-        Solution solution = new Two(file);
+        Solution solution = new Two();
         assertEquals(2286, solution.partTwo());
     }
 
     @Test
     void possibleGames() {
-        File file = new File(getPath() + "/inputPartOne");
-        var solution = new Two(file);
+        var solution = new Two();
 
         var games = new HashMap<Integer, Map<Two.Colour, Integer>>();
         games.put(1, partOneGame1());

@@ -17,7 +17,6 @@ import static org.junit.jupiter.params.provider.Arguments.*;
 class OneTest extends SolutionTest {
     @Test
     public void partOne() {
-        var file = new File(getPath() + "/inputPartOne");
         Solution solution = new One();
         var actual = solution.partOne();
         assertEquals(142, actual);
@@ -32,7 +31,6 @@ class OneTest extends SolutionTest {
 
     @Test
     public void partTwo() {
-        var file = new File(getPath() + "/inputPartTwo");
         Solution solution = new One();
         var actual = solution.partTwo();
         assertEquals(281, actual);

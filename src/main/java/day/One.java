@@ -8,7 +8,7 @@ import java.util.function.BinaryOperator;
 
 @NoArgsConstructor
 @Service(One.DAY)
-public class One extends AbstractSolution<Integer, Integer> {
+public class One extends AbstractSolution implements Solution<Integer, Integer> {
 
     static final String DAY = "1";
 

@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-@Service
-public abstract class AbstractSolution<T, U> implements Solution {
+public abstract class AbstractSolution {
 
     public abstract int getDay();
 

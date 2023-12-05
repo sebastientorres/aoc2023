@@ -3,9 +3,8 @@ package day;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@NoArgsConstructor
 @Service(Three.DAY)
-public class Three extends AbstractSolution<Integer, Integer> {
+public class Three extends AbstractSolution implements Solution<Integer, Integer> {
 
     public static final String DAY = "3";
 

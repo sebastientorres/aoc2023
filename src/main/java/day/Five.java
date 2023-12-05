@@ -3,7 +3,7 @@ package day;
 import org.springframework.stereotype.Service;
 
 @Service(Five.DAY)
-public class Five extends AbstractSolution<Integer, Integer> {
+public class Five extends AbstractSolution implements Solution<Integer, Integer> {
     public static final String DAY = "5";
 
     @Override

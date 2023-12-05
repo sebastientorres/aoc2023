@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Component(Four.DAY)
-public class Four extends AbstractSolution<Integer, Integer> {
+public class Four extends AbstractSolution implements Solution<Integer, Integer> {
 
     public static final String DAY = "4";
 

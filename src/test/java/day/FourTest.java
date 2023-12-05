@@ -25,13 +25,13 @@ class FourTest extends SolutionTest {
     }
     @Test
     void partOne() {
-        Solution solution = new Four(createInputFile("inputPartOne"));
+        Solution solution = new Four();
         assertEquals(13, solution.partOne());
     }
 
     @Test
     void partTwo() {
-        Solution solution = new Four(createInputFile("inputPartOne"));
+        Solution solution = new Four();
         assertEquals(30, solution.partTwo());
     }
 
@@ -46,7 +46,7 @@ class FourTest extends SolutionTest {
     @ParameterizedTest
     @MethodSource
     void wonGamesFromLine(String line, List<String> expected) {
-        var four = new Four(createInputFile("inputPartOne"));
+        var four = new Four();
         var actual = four.wonGamesFromLine(line);
         assertEquals(expected, actual);
     }

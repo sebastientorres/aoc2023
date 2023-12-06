@@ -1,20 +1,15 @@
-package day;
+package main.day;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-import static day.Two.Colour.*;
+import static main.day.Two.Colour.*;
 
 @NoArgsConstructor
 @Service(Two.DAY)

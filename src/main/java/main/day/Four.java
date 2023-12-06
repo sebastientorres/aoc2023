@@ -1,4 +1,4 @@
-package day;
+package main.day;
 
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;

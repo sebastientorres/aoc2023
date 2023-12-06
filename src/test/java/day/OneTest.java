@@ -1,14 +1,12 @@
 package day;
 
-import day.One;
-import day.Solution;
-import day.SolutionTest;
+import main.day.One;
+import main.day.Solution;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.File;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;

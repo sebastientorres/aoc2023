@@ -1,8 +1,7 @@
 package day;
 
-import day.Solution;
-import day.SolutionTest;
-import day.Three;
+import main.day.Solution;
+import main.day.Three;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,4 +1,4 @@
-package day;
+package main.day;
 
 public interface Solution<T, U> {
 

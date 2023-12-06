@@ -1,14 +1,12 @@
 package day;
 
-import day.Solution;
-import day.SolutionTest;
-import day.Two;
+import main.day.Solution;
+import main.day.Two;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -1,6 +1,6 @@
 package main;
 
-import day.Solution;
+import main.day.Solution;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +16,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/aoc")
 public class AoC implements Solution {
-
-    public static void main(String[] args) {
-
-    }
 
     private final Map<Integer, Solution> dayToSolutionMap;
 

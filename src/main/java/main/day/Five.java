@@ -1,4 +1,4 @@
-package day;
+package main.day;
 
 import org.springframework.stereotype.Service;
 

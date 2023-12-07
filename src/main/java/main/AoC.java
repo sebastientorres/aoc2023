@@ -21,14 +21,12 @@ public class AoC implements Solution {
         System.out.println("Part two: " + aoc.partTwo());
     }
 
-    Map<Integer, Solution> dayToSolutionMap = new HashMap<>();
-
-    {
-        dayToSolutionMap.put(1, new One(createSolutionFile()));
-        dayToSolutionMap.put(2, new Two(createSolutionFile()));
-        dayToSolutionMap.put(3, new Three(createSolutionFile()));
-        dayToSolutionMap.put(4, new Four(createSolutionFile()));
-    }
+    Map<Integer, Solution> dayToSolutionMap = Map.of(
+            1, new One(createSolutionFile()),
+            2, new Two(createSolutionFile()),
+            3, new Three(createSolutionFile()),
+            4, new Four(createSolutionFile())
+    );
 
     @Override
     public Object partOne() {

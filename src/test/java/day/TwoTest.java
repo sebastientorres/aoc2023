@@ -19,13 +19,13 @@ class TwoTest extends SolutionTest {
 
     @Test
     void partOne() {
-        Solution solution = new Two();
+        var solution = new Two();
         assertEquals(8, solution.partOne());
     }
 
     @Test
     void partTwo() {
-        Solution solution = new Two();
+        var solution = new Two();
         assertEquals(2286, solution.partTwo());
     }
 

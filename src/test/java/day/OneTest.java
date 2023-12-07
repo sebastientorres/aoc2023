@@ -15,7 +15,7 @@ import static org.junit.jupiter.params.provider.Arguments.*;
 class OneTest extends SolutionTest {
     @Test
     public void partOne() {
-        Solution solution = new One();
+        var solution = new One();
         var actual = solution.partOne();
         assertEquals(142, actual);
     }
@@ -29,7 +29,7 @@ class OneTest extends SolutionTest {
 
     @Test
     public void partTwo() {
-        Solution solution = new One();
+        var solution = new One();
         var actual = solution.partTwo();
         assertEquals(281, actual);
     }

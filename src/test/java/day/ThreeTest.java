@@ -10,7 +10,7 @@ class ThreeTest extends SolutionTest {
 
     @Test
     void partOne() {
-        Solution solution = new Three();
+        var solution = new Three();
         assertEquals(4361, solution.partOne());
     }
 

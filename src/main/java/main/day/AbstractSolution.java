@@ -1,6 +1,7 @@
 package main.day;
 
 import lombok.Getter;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class AbstractSolution {
+public abstract class AbstractSolution<T, U> {
 
     public abstract int getDay();
 
@@ -29,6 +30,9 @@ public abstract class AbstractSolution {
 
         }
     }
+
+    abstract T partOne();
+    abstract U partTwo();
 
     private File createSolutionFile() {
         return new File("src/main/resources/day/" + getDay() + "/input");

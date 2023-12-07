@@ -1,16 +1,17 @@
 package main.day;
 
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.function.BinaryOperator;
 
 @NoArgsConstructor
-@Service(One.DAY)
-public class One extends AbstractSolution implements Solution<Integer, Integer> {
+@Component(One.DAY)
+public class One extends AbstractSolution<Integer, Integer> {
 
-    static final String DAY = "1";
+    public static final String DAY = "1";
 
     private final static BinaryOperator<Integer> integerAccumulator = (a, b) -> a + b;
     private final static BinaryOperator<String> stringAccumulator = (a, b) -> a + b;
@@ -38,7 +39,7 @@ public class One extends AbstractSolution implements Solution<Integer, Integer> 
         return integers.stream().reduce(0, integerAccumulator);
     }
 
-    int partOneLineDecoder(String input) {
+    public int partOneLineDecoder(String input) {
         var digits = Arrays.stream(input.split(""))
                 .filter(t -> t.matches("\\d"))
                 .reduce(stringAccumulator).get();
@@ -57,7 +58,7 @@ public class One extends AbstractSolution implements Solution<Integer, Integer> 
         return Integer.valueOf(result);
     }
 
-    int partTwoLineDecoder(String line) {
+    public int partTwoLineDecoder(String line) {
         String[] numbers = new String[line.length()];
 
         var tokens = line.split("");

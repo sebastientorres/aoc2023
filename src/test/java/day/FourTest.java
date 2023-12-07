@@ -24,13 +24,13 @@ class FourTest extends SolutionTest {
     }
     @Test
     void partOne() {
-        Solution solution = new Four();
+        var solution = new Four();
         assertEquals(13, solution.partOne());
     }
 
     @Test
     void partTwo() {
-        Solution solution = new Four();
+        var solution = new Four();
         assertEquals(30, solution.partTwo());
     }
 

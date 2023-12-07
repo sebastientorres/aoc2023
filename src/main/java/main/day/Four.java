@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Component(Four.DAY)
-public class Four extends AbstractSolution implements Solution<Integer, Integer> {
+public class Four extends AbstractSolution<Integer, Integer> {
 
     public static final String DAY = "4";
 
-    protected int pointsFromLine(String line) {
+    public int pointsFromLine(String line) {
         int count = winningHandsFromLine(line);
 
         if (count < 2) {
@@ -43,7 +43,7 @@ public class Four extends AbstractSolution implements Solution<Integer, Integer>
         return winningNumbers.size();
     }
 
-    protected List<String> wonGamesFromLine(String line) {
+    public List<String> wonGamesFromLine(String line) {
         var wonGames = new ArrayList<String>();
 
         var points = winningHandsFromLine(line);
@@ -82,7 +82,7 @@ public class Four extends AbstractSolution implements Solution<Integer, Integer>
         return sum;
     }
 
-    protected int extractGameIndex(String game) {
+    public int extractGameIndex(String game) {
         return Integer.valueOf(
                 Arrays.stream(game.split("\\:")[0].trim().split(" "))
                         .filter(t -> !t.isBlank())

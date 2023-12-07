@@ -1,9 +1,10 @@
 package main.day;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service(Three.DAY)
-public class Three extends AbstractSolution implements Solution<Integer, Integer> {
+@Component(Three.DAY)
+public class Three extends AbstractSolution<Integer, Integer> {
 
     public static final String DAY = "3";
 

@@ -1,6 +1,7 @@
 package main.day;
 
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -12,8 +13,8 @@ import java.util.stream.Collectors;
 import static main.day.Two.Colour.*;
 
 @NoArgsConstructor
-@Service(Two.DAY)
-public class Two extends AbstractSolution implements Solution<Integer, Integer> {
+@Component(Two.DAY)
+public class Two extends AbstractSolution<Integer, Integer> {
 
     public static final String DAY = "2";
 
@@ -36,7 +37,7 @@ public class Two extends AbstractSolution implements Solution<Integer, Integer> 
         return sumGamesThatWork(games);
     }
 
-    List<Integer> indexOfGamesThatArePossible(Map<Integer, Map<Colour, Integer>> games) {
+    public List<Integer> indexOfGamesThatArePossible(Map<Integer, Map<Colour, Integer>> games) {
         return games
                 .entrySet()
                 .stream()
@@ -82,7 +83,7 @@ public class Two extends AbstractSolution implements Solution<Integer, Integer> 
                 .reduce(0, (a, b) -> a + b);
     }
 
-    int gamePower(Map<Colour, Integer> game) {
+    public int gamePower(Map<Colour, Integer> game) {
         return game
                 .values()
                 .stream()
@@ -147,7 +148,7 @@ public class Two extends AbstractSolution implements Solution<Integer, Integer> 
         return Integer.valueOf(DAY);
     }
 
-    enum Colour {
+    public enum Colour {
         blue,
         red,
         green;

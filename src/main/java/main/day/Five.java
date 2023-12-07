@@ -1,9 +1,9 @@
 package main.day;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service(Five.DAY)
-public class Five extends AbstractSolution implements Solution<Integer, Integer> {
+@Component(Five.DAY)
+public class Five extends AbstractSolution<Integer, Integer> {
     public static final String DAY = "5";
 
     @Override

@@ -12,12 +12,13 @@ public class Eight extends Solution<Integer, Integer> {
 
     @Setter(AccessLevel.PROTECTED)
     private String directions;
-    private final Map<String, String> map = new HashMap<>();
+    private final Map<String, MapEntry> map = new HashMap<>();
 
     @Override
     public Integer partOne() {
         var directions = getLines().get(0);
 
+        setDirections(getLines().get(0));
         map.putAll(lineParser(getLines()));
 
         var start = map.get("AAA");
@@ -31,25 +32,31 @@ public class Eight extends Solution<Integer, Integer> {
         var direction = directionArray[directionCounter];
         while(notFound) {
             direction = directionArray[directionCounter];
-            var lr = direction.equals("L") ? 0 : 1;
-            var d = next.split(",")[lr].trim();
+            var isLeft = direction.equals("L");
+            var d = isLeft ? next.getLeft() : next.getRight();
             next = map.get(d);
             counter++;
             directionCounter++;
             if (directionCounter == directionArray.length) {
                 directionCounter = 0;
             }
-            notFound = !next.equals("ZZZ, ZZZ");
+            notFound = !next.getLocation().equals("ZZZ");
         }
 
         return counter;
     }
 
-    protected Map<String, String> lineParser(List<String> lines) {
+    protected Map<String, MapEntry> lineParser(List<String> lines) {
         return lines.stream().filter(l -> !l.equals(directions) && !l.isBlank())
                 .collect(Collectors.toMap(
                         l -> l.split("=")[0].trim(),
-                        l -> l.split("=")[1].trim().replace("(", "").replace(")", ""))
+                        l -> {
+                            var location = l.split("=")[0].trim();
+                            var lr = l.split("=")[1].trim().replace("(", "").replace(")", "").trim();
+                            var left = lr.split(",")[0].trim();
+                            var right = lr.split(",")[1].trim();
+                            return new MapEntry(location, left, right);
+                        })
                 );
     }
 
@@ -62,4 +69,5 @@ public class Eight extends Solution<Integer, Integer> {
     public int today() {
         return DAY;
     }
+
 }

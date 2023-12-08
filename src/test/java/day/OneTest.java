@@ -1,23 +1,36 @@
-package day.one;
+package day;
 
+import day.One;
 import day.Solution;
-import day.SolutionTest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.File;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.*;
 
 class OneTest extends SolutionTest {
+
+    @Override
+    int getDay() {
+        return 1;
+    }
+
+    private One solution;
+
+    @BeforeEach
+    void before() {
+        solution = new One();
+        solution.setFile(createInputFile());
+    }
+
     @Test
-    public void partOne() {
-        var file = new File(getPath() + "/inputPartOne");
-        Solution solution = new One(file);
+    public void partOneTest() {
+        solution.setFile(createInputFile("inputPartOne"));
         var actual = solution.partOne();
         assertEquals(142, actual);
     }
@@ -25,14 +38,12 @@ class OneTest extends SolutionTest {
     @ParameterizedTest
     @MethodSource
     void partOneLineDecoder(String input, int expected) {
-        var one = new One();
-        assertEquals(expected, one.partOneLineDecoder(input));
+        assertEquals(expected, solution.partOneLineDecoder(input));
     }
 
     @Test
-    public void partTwo() {
-        var file = new File(getPath() + "/inputPartTwo");
-        Solution solution = new One(file);
+    public void partTwoTest() {
+        solution.setFile(createInputFile("inputPartTwo"));
         var actual = solution.partTwo();
         assertEquals(281, actual);
     }
@@ -40,8 +51,7 @@ class OneTest extends SolutionTest {
     @ParameterizedTest
     @MethodSource
     void partTwoLineDecoder(String input, int expected) {
-        var one = new One();
-        assertEquals(expected, one.partTwoLineDecoder(input));
+        assertEquals(expected, solution.partTwoLineDecoder(input));
     }
 
     static Stream<Arguments> partOneLineDecoder() {

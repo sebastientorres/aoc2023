@@ -1,4 +1,4 @@
-package day.three;
+package day;
 
 import day.Solution;
 import lombok.AllArgsConstructor;
@@ -10,29 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-@NoArgsConstructor
-@AllArgsConstructor
-public class Three implements Solution<Integer, Integer> {
+public class Three extends Solution<Integer, Integer> {
 
-    private File file;
+    public static final int DAY = 3;
 
     @Override
     public Integer partOne() {
 
         List<String[]> lines = new ArrayList<>();
 
-        try {
-            Scanner scanner = new Scanner(file);
-
-            scanner.useDelimiter("\n");
-
-            while (scanner.hasNext()) {
-                var line = scanner.next();
-                lines.add(line.split(""));
-            }
-
-        } catch (FileNotFoundException e) {
-            return -1;
+        for (String line : getLines()) {
+            lines.add(line.split(""));
         }
 
         for(int i = 0; i < lines.size(); i++) {
@@ -50,5 +38,10 @@ public class Three implements Solution<Integer, Integer> {
     @Override
     public Integer partTwo() {
         return -1;
+    }
+
+    @Override
+    public int today() {
+        return DAY;
     }
 }

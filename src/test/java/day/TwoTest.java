@@ -1,7 +1,6 @@
-package day.two;
+package day;
 
-import day.Solution;
-import day.SolutionTest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -18,25 +17,30 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class TwoTest extends SolutionTest {
 
+    @Override
+    int getDay() {
+        return 2;
+    }
+
+    private Two solution;
+    @BeforeEach
+    void before() {
+        solution = new Two();
+        solution.setFile(createInputFile());
+    }
+
     @Test
-    void partOne() {
-        File file = new File(getPath() + "/inputPartOne");
-        Solution solution = new Two(file);
+    void partOneTest() {
         assertEquals(8, solution.partOne());
     }
 
     @Test
-    void partTwo() {
-        File file = new File(getPath() + "/inputPartOne");
-        Solution solution = new Two(file);
+    void partTwoTest() {
         assertEquals(2286, solution.partTwo());
     }
 
     @Test
     void possibleGames() {
-        File file = new File(getPath() + "/inputPartOne");
-        var solution = new Two(file);
-
         var games = new HashMap<Integer, Map<Two.Colour, Integer>>();
         games.put(1, partOneGame1());
         games.put(2, partOneGame2());
@@ -50,17 +54,13 @@ class TwoTest extends SolutionTest {
     @ParameterizedTest
     @MethodSource
     void partOneLineParser(String line, Map<Two.Colour, Integer> colourCount) {
-        Two solution = new Two();
-
         var actual = solution.partOneLineParser(line);
-
         assertEquals(colourCount, actual);
     }
 
     @ParameterizedTest
     @MethodSource
     void gamePower(String game, int expected) {
-        var solution = new Two();
         var actual = solution.gamePower(solution.partOneLineParser(game));
         assertEquals(expected, actual);
     }

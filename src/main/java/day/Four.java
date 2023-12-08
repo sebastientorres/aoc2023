@@ -1,4 +1,4 @@
-package day.four;
+package day;
 
 import day.Solution;
 import lombok.AllArgsConstructor;
@@ -17,28 +17,9 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@NoArgsConstructor
-public class Four implements Solution<Integer, Integer> {
+public class Four extends Solution<Integer, Integer> {
 
-    private List<String> games = new ArrayList<>();
-
-    public Four(File file) {
-
-        try {
-            Scanner scanner = new Scanner(file);
-            scanner.useDelimiter("\n");
-
-            while (scanner.hasNext()) {
-                games.add(scanner.next().trim());
-            }
-
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
+    public static final int DAY = 4;
 
     protected int pointsFromLine(String line) {
         int count = winningHandsFromLine(line);
@@ -75,8 +56,8 @@ public class Four implements Solution<Integer, Integer> {
         var gameIndex = extractGameIndex(line);
 
         for (int i = 0; i < points; i++) {
-            if (i < games.size()) {
-                wonGames.add(games.get(i + gameIndex));
+            if (i < getLines().size()) {
+                wonGames.add(getLines().get(i + gameIndex));
             }
         }
 
@@ -85,16 +66,16 @@ public class Four implements Solution<Integer, Integer> {
 
     @Override
     public Integer partOne() {
-        return games.stream().map(this::pointsFromLine).reduce(0, (a, b) -> a + b);
+        return getLines().stream().map(this::pointsFromLine).reduce(0, (a, b) -> a + b);
     }
 
     @Override
     public Integer partTwo() {
         int sum = 0;
 
-        Queue<String> wonGames = new ArrayDeque<>(games);
+        Queue<String> wonGames = new ArrayDeque<>(getLines());
 
-        sum = games.size();
+        sum = getLines().size();
 
         while (!wonGames.isEmpty()) {
             var game = wonGames.poll();
@@ -104,6 +85,11 @@ public class Four implements Solution<Integer, Integer> {
         }
 
         return sum;
+    }
+
+    @Override
+    public int today() {
+        return DAY;
     }
 
     protected int extractGameIndex(String game) {

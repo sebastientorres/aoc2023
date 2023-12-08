@@ -1,7 +1,9 @@
-package day.four;
+package day;
 
+import day.Four;
 import day.Solution;
 import day.SolutionTest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,38 +17,51 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class FourTest extends SolutionTest {
 
+    @Override
+    int getDay() {
+        return 4;
+    }
+
+    private Four solution;
+
+    @BeforeEach
+    public void before() {
+        solution = new Four();
+        solution.setFile(createInputFile());
+    }
+
+    @Override
+    protected String getPath() {
+        return super.getPath().replace("main", "test");
+    }
+
     @ParameterizedTest
     @MethodSource
     public void partOneLineParser(String line, int expectedPoints) {
-        var solution = new Four();
         var actual = solution.pointsFromLine(line);
         assertEquals(expectedPoints, actual);
     }
     @Test
-    void partOne() {
-        Solution solution = new Four(createInputFile("inputPartOne"));
+    void partOneTest() {
         assertEquals(13, solution.partOne());
     }
 
     @Test
-    void partTwo() {
-        Solution solution = new Four(createInputFile("inputPartOne"));
+    void partTwoTest() {
         assertEquals(30, solution.partTwo());
     }
 
     @ParameterizedTest
     @MethodSource
     void extractGameIndex(String game, int expected) {
-        Four four = new Four();
-        var actual = four.extractGameIndex(game);
+        var actual = solution.extractGameIndex(game);
         assertEquals(expected, actual);
     }
 
     @ParameterizedTest
     @MethodSource
     void wonGamesFromLine(String line, List<String> expected) {
-        var four = new Four(createInputFile("inputPartOne"));
-        var actual = four.wonGamesFromLine(line);
+        var actual = solution.wonGamesFromLine(line);
         assertEquals(expected, actual);
     }
 

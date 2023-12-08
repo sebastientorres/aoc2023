@@ -1,5 +1,6 @@
 package main;
 
+import day.Eight;
 import day.Solution;
 import day.Four;
 import day.One;
@@ -20,7 +21,8 @@ public class AoC {
             One.DAY, new One(),
             Two.DAY, new Two(),
             Three.DAY, new Three(),
-            Four.DAY, new Four()
+            Four.DAY, new Four(),
+            Eight.DAY, new Eight()
     );
 
     public int today() {
@@ -28,8 +30,11 @@ public class AoC {
     }
 
     private String getSolution() {
-        return dayToSolutionMap.get(today()).getSolution();
+        return getSolutionFromDay(today());
     }
 
+    private String getSolutionFromDay(int day) {
+        return dayToSolutionMap.get(day).getSolution();
+    }
 
 }

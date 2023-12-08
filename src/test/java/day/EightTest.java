@@ -51,22 +51,21 @@ class EightTest extends SolutionTest<Eight> {
 
     static Stream<Arguments> lineParser() {
         return Stream.of(
-//                arguments("inputExample1", "RL", inputExample1Expected),
+                arguments("inputExample1", "RL", inputExample1Expected),
                 arguments("inputExample2", "LLR", inputExample2Expected)
         );
     }
 
-
-//    private static Map<String, String> inputExample1Expected
-//            = Map.of(
-//            "AAA" , "BBB, CCC",
-//            "BBB" , "DDD, EEE",
-//            "CCC" , "ZZZ, GGG",
-//            "DDD" , "DDD, DDD",
-//            "EEE" , "EEE, EEE",
-//            "GGG" , "GGG, GGG",
-//            "ZZZ" , "ZZZ, ZZZ"
-//    );
+    private static Map<String, MapEntry> inputExample1Expected
+            = Map.of(
+            "AAA" , new MapEntry("AAA", "BBB", "CCC"),
+            "BBB" , new MapEntry("BBB", "DDD", "EEE"),
+            "CCC" , new MapEntry("CCC", "ZZZ", "GGG"),
+            "DDD" , new MapEntry("DDD", "DDD", "DDD"),
+            "EEE" , new MapEntry("EEE", "EEE", "EEE"),
+            "GGG" , new MapEntry("GGG", "GGG", "GGG"),
+            "ZZZ" , new MapEntry("ZZZ", "ZZZ", "ZZZ")
+    );
 
     private static Map<String, MapEntry> inputExample2Expected
             = Map.of(

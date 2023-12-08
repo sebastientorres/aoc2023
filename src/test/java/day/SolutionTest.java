@@ -1,9 +1,10 @@
 package day;
 
 import java.io.File;
-import java.time.LocalDate;
 
-public abstract class SolutionTest {
+public abstract class SolutionTest<T> {
+
+    T solution;
 
     File createInputFile() {
         return createInputFile("input");

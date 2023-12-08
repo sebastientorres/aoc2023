@@ -15,14 +15,13 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class TwoTest extends SolutionTest {
+class TwoTest extends SolutionTest<Two> {
 
     @Override
     int getDay() {
         return 2;
     }
 
-    private Two solution;
     @BeforeEach
     void before() {
         solution = new Two();

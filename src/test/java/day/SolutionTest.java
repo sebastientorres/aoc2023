@@ -2,20 +2,22 @@ package day;
 
 import java.io.File;
 
-public abstract class SolutionTest {
+public abstract class SolutionTest<T> {
 
-    protected File createInputFile(String fileName) {
+    T solution;
+
+    File createInputFile() {
+        return createInputFile("input");
+    }
+
+    File createInputFile(String fileName) {
         return new File(getPath() + "/" + fileName);
     }
 
     protected String getPath() {
-        return "src/test/resources/day/" + geDay();
+        return "src/test/resources/day/" + getDay();
     }
 
-    private String geDay() {
-        String packageName = getClass().getPackageName();
-        int index = packageName.lastIndexOf(".");
-        return packageName.substring(index + 1, packageName.length());
-    }
+    abstract int getDay();
 
 }

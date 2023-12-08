@@ -1,4 +1,4 @@
-package day.one;
+package day;
 
 import day.Solution;
 import lombok.AllArgsConstructor;
@@ -11,51 +11,47 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.function.BinaryOperator;
 
-@AllArgsConstructor
-@NoArgsConstructor
-public class One implements Solution<Integer, Integer> {
+public class One extends Solution<Integer, Integer> {
+
+    public final static Integer DAY = 1;
 
     private final static BinaryOperator<Integer> integerAccumulator = (a, b) -> a + b;
     private final static BinaryOperator<String> stringAccumulator = (a, b) -> a + b;
 
-    private File file;
-
     @Override
     public Integer partOne() {
-        return partOne(file);
+        var digits = new ArrayList<String>();
+
+        for (String line : getLines()) {
+            var digit = Arrays.stream(line.split(""))
+                    .filter(t -> t.matches("\\d"))
+                    .reduce("", stringAccumulator);
+
+            digits.add(digit);
+        }
+
+        return digits.stream()
+                .map(this::partOneLineDecoder)
+                .reduce(0, integerAccumulator);
     }
 
     @Override
     public Integer partTwo() {
-        return partTwo(file);
-    }
+        List<Integer> integers = new ArrayList<>();
 
-    int partOne(File file) {
-        try {
-            Scanner scanner = new Scanner(file);
-            scanner.useDelimiter("\n");
-
-            var digits = new ArrayList<String>();
-
-            while (scanner.hasNext()) {
-
-                var next = scanner.next();
-                var s = Arrays.stream(next.split(""))
-                        .filter(t -> t.matches("\\d"))
-                        .reduce("", stringAccumulator);
-                digits.add(s);
-            }
-
-            return digits.stream()
-                    .map(this::partOneLineDecoder)
-                    .reduce(0, integerAccumulator);
-
-        } catch (FileNotFoundException e) {
-            return -1;
+        for (String line : getLines()) {
+            integers.add(partTwoLineDecoder(line));
         }
+
+        return integers.stream().reduce(0, integerAccumulator);
     }
 
-    int partOneLineDecoder(String input) {
+    @Override
+    public int today() {
+        return DAY;
+    }
+
+    public int partOneLineDecoder(String input) {
         var digits = Arrays.stream(input.split(""))
                 .filter(t -> t.matches("\\d"))
                 .reduce(stringAccumulator).get();
@@ -74,26 +70,7 @@ public class One implements Solution<Integer, Integer> {
         return Integer.valueOf(result);
     }
 
-    int partTwo(File file) {
-        try {
-            Scanner scanner = new Scanner(file);
-            scanner.useDelimiter("\n");
-
-            List<Integer> integers = new ArrayList<>();
-
-            while (scanner.hasNext()) {
-                var line = scanner.next();
-                integers.add(partTwoLineDecoder(line));
-            }
-
-            return integers.stream().reduce(0, integerAccumulator);
-
-        } catch (Exception e) {
-            return -1;
-        }
-    }
-
-    int partTwoLineDecoder(String line) {
+    public int partTwoLineDecoder(String line) {
         String[] numbers = new String[line.length()];
 
         var tokens = line.split("");

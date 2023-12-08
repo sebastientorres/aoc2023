@@ -28,12 +28,14 @@ class EightTest extends SolutionTest<Eight> {
     @Test
     void inputOneExampleOne() {
         solution.setFile(createInputFile("inputExample1"));
+        solution.setDirections("RL");
         assertEquals(2, solution.partOne());
     }
 
     @Test
     void inputOneExampleTwo() {
         solution.setFile(createInputFile("inputExample2"));
+        solution.setDirections("LLR");
         assertEquals(6, solution.partOne());
     }
 
@@ -56,19 +58,19 @@ class EightTest extends SolutionTest<Eight> {
 
     private static Map<String, String> inputExample1Expected
             = Map.of(
-            "AAA" , "(BBB, CCC)",
-            "BBB" , "(DDD, EEE)",
-            "CCC" , "(ZZZ, GGG)",
-            "DDD" , "(DDD, DDD)",
-            "EEE" , "(EEE, EEE)",
-            "GGG" , "(GGG, GGG)",
-            "ZZZ" , "(ZZZ, ZZZ)"
+            "AAA" , "BBB, CCC",
+            "BBB" , "DDD, EEE",
+            "CCC" , "ZZZ, GGG",
+            "DDD" , "DDD, DDD",
+            "EEE" , "EEE, EEE",
+            "GGG" , "GGG, GGG",
+            "ZZZ" , "ZZZ, ZZZ"
     );
 
     private static Map<String, String> inputExample2Expected
             = Map.of(
-            "AAA" , "(BBB, BBB)",
-            "BBB" , "(AAA, ZZZ)",
-            "ZZZ" , "(ZZZ, ZZZ)"
+            "AAA" , "BBB, BBB",
+            "BBB" , "AAA, ZZZ",
+            "ZZZ" , "ZZZ, ZZZ"
     );
 }

@@ -11,16 +11,21 @@ public class Nine extends Solution<Integer, Integer> {
                 .map(i -> Integer.valueOf(i.trim()))
                 .collect(Collectors.toList()).toArray(new Integer[0]);
 
-        int sum = 0;
+        return findNextInSequence(sequence, sequence[sequence.length-1], false);
+    }
 
-        Integer[] differences = findDifferences(sequence);
-
-        while(differences[differences.length - 1] > 0) {
-            sum += differences[differences.length-1];
-            differences = findDifferences(differences);
+    protected int findNextInSequence(Integer[] sequence, int sum, boolean areAllElementsZero) {
+        if (areAllElementsZero) {
+            return sum;
         }
+        Integer[] differences = findDifferences(sequence);
+        sum += differences[differences.length-1];
 
-        return sum + sequence[sequence.length-1];
+        return findNextInSequence(differences, sum, areAllElementsZero(differences));
+    }
+
+    boolean areAllElementsZero(Integer[] input) {
+        return Arrays.stream(input).allMatch(e -> e == 0);
     }
 
     Integer[] findDifferences(Integer[] sequence) {
@@ -36,7 +41,7 @@ public class Nine extends Solution<Integer, Integer> {
 
     @Override
     public Integer partOne() {
-        return null;
+        return getLines().stream().map(this::findNextInSequence).reduce(0, (a, b) -> a + b);
     }
 
     @Override

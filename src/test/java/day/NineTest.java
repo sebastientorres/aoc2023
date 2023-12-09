@@ -64,4 +64,21 @@ class NineTest extends SolutionTest<Nine> {
         var actual = solution.partOne();
         assertEquals(114, actual);
     }
+
+    @ParameterizedTest
+    @MethodSource
+    void areAllElementsZero(Integer[] input, boolean expected) {
+        var actual = solution.areAllElementsZero(input);
+        assertEquals(expected, actual);
+    }
+
+    static Stream<Arguments> areAllElementsZero() {
+        return Stream.of(
+                arguments(new Integer[]{0, 1}, false),
+                arguments(new Integer[]{0, 0}, true),
+                arguments(new Integer[]{1, 1}, false),
+                arguments(new Integer[]{1}, false),
+                arguments(new Integer[]{0}, true)
+        );
+    }
 }

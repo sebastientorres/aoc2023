@@ -1,11 +1,6 @@
 package main;
 
-import day.Eight;
-import day.Solution;
-import day.Four;
-import day.One;
-import day.Three;
-import day.Two;
+import day.*;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -22,7 +17,8 @@ public class AoC {
             Two.DAY, new Two(),
             Three.DAY, new Three(),
             Four.DAY, new Four(),
-            Eight.DAY, new Eight()
+            Eight.DAY, new Eight(),
+            Nine.DAY, new Nine()
     );
 
     public int today() {

@@ -1,5 +1,7 @@
 package day;
 
+import org.junit.jupiter.api.BeforeEach;
+
 import java.io.File;
 
 public abstract class SolutionTest<T> {

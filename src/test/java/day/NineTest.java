@@ -31,7 +31,6 @@ class NineTest extends SolutionTest<Nine> {
         assertEquals(expected, actual);
     }
 
-
     static Stream<Arguments> findNextInSequence() {
         return Stream.of(
                 arguments(seqeunce1, 18),
@@ -57,5 +56,12 @@ class NineTest extends SolutionTest<Nine> {
                 arguments(new Integer[] {1, 3, 6, 10, 15, 21}, new Integer[]{2, 3, 4, 5, 6}),
                 arguments(new Integer[]{10, 13, 16, 21, 30, 45}, new Integer[]{3, 3, 5, 9, 15})
         );
+    }
+
+    @Test
+    void partOne() {
+        solution.setFile(createInputFile("inputExample"));
+        var actual = solution.partOne();
+        assertEquals(114, actual);
     }
 }

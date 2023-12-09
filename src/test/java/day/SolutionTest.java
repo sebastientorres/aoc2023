@@ -6,6 +6,8 @@ public abstract class SolutionTest<T> {
 
     T solution;
 
+    abstract void before();
+
     File createInputFile() {
         return createInputFile("input");
     }

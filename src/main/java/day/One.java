@@ -1,13 +1,5 @@
 package day;
 
-import day.Solution;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.function.BinaryOperator;
 
